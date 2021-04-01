@@ -67,6 +67,7 @@ func New(ctx context.Context, auth types.AuthConfig, opt Opt) (*Registry, error)
 }
 
 func newFromTransport(ctx context.Context, auth types.AuthConfig, transport http.RoundTripper, opt Opt) (*Registry, error) {
+	fmt.Println("0. opt.Domain: " + opt.Domain + "/ auth.ServerAddress: " + auth.ServerAddress)
 	if len(opt.Domain) < 1 || opt.Domain == "docker.io" {
 		opt.Domain = auth.ServerAddress
 	}
