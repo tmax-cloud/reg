@@ -73,6 +73,7 @@ func newFromTransport(ctx context.Context, auth types.AuthConfig, transport http
 	url := strings.TrimSuffix(opt.Domain, "/")
 	authURL := strings.TrimSuffix(auth.ServerAddress, "/")
 
+	fmt.Println("1. url: " + url + "/ authURL: " + authURL)
 	if !reProtocol.MatchString(url) {
 		if !opt.NonSSL {
 			url = "https://" + url
@@ -107,7 +108,7 @@ func newFromTransport(ctx context.Context, auth types.AuthConfig, transport http
 		Transport: errorTransport,
 		Headers:   opt.Headers,
 	}
-
+	fmt.Println("2. url: " + url + "/ authURL: " + authURL)
 	// set the logging
 	logf := Quiet
 	if opt.Debug {
@@ -126,7 +127,7 @@ func newFromTransport(ctx context.Context, auth types.AuthConfig, transport http
 		Logf:     logf,
 		Opt:      opt,
 	}
-
+	fmt.Println("3. url: " + url + "/ authURL: " + authURL)
 	if registry.Pingable() && !opt.SkipPing {
 		if err := registry.Ping(ctx); err != nil {
 			return nil, err
